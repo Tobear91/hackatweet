@@ -7,19 +7,28 @@ import { useState } from "react";
 function Login() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formSignup, setFormSignup] = useState({
-    email: "camille.hurtaud@gmail.com",
-    name: "Camille",
-    pseudo: "Tobear91",
-    password: "coucou1234",
+    email: "",
+    name: "",
+    pseudo: "",
+    password: "",
   });
 
   const handleSetFormSignup = (e) => {
     setFormSignup({ ...formSignup, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formSignup);
+    const url = "http://localhost:3000/users/signup";
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formSignup),
+    };
+
+    const response = await fetch(url, options);
+    const datas = await response.json();
+    console.log(datas);
   };
 
   const showModal = () => {
@@ -52,10 +61,10 @@ function Login() {
         <FontAwesomeIcon icon={faCrow} />
         <h3>Create your Hackatweet account</h3>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <input type="email" placeholder="Email" value={formSignup.email} onChange={(e) => handleSetFormSignup(e)} />
-          <input type="text" placeholder="Nom" value={formSignup.name} onChange={(e) => handleSetFormSignup(e)} />
-          <input type="text" placeholder="Pseudo" value={formSignup.pseudo} onChange={(e) => handleSetFormSignup(e)} />
-          <input type="password" placeholder="password" value={formSignup.password} onChange={(e) => handleSetFormSignup(e)} />
+          <input type="email" name="email" placeholder="Email" value={formSignup.email} onChange={(e) => handleSetFormSignup(e)} />
+          <input type="text" name="name" placeholder="Nom" value={formSignup.name} onChange={(e) => handleSetFormSignup(e)} />
+          <input type="text" name="pseudo" placeholder="Pseudo" value={formSignup.pseudo} onChange={(e) => handleSetFormSignup(e)} />
+          <input type="password" name="password" placeholder="password" value={formSignup.password} onChange={(e) => handleSetFormSignup(e)} />
           <button type="submit">Sign up</button>
         </form>
       </Modal>
