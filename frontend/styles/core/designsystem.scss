@@ -1,0 +1,30 @@
+.button {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 8px 50px;
+  border-radius: 20px;
+  line-height: 20px;
+  cursor: pointer;
+
+  &.light {
+    background: $blue;
+    color: #ffffff;
+    border: 1px solid $blue;
+
+    &:hover {
+      background: #ffffff;
+      color: $blue;
+    }
+  }
+
+  &.dark {
+    background: transparent;
+    color: $blue-dark;
+    border: 1px solid $blue-grey;
+
+    &:hover {
+      background: $blue-dark;
+      color: #ffffff;
+    }
+  }
+}
