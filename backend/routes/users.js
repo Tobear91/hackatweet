@@ -29,7 +29,7 @@ router.post('/signup', (req, res) => {
 
       newUser.save().then(newDoc => {
         console.log("New user:", newDoc.email)
-        res.json({ result: true, token: newDoc});
+        res.json({ result: true, user: newDoc});
       });
     } else {
       // User already exists in database
@@ -50,7 +50,7 @@ router.post('/signin', (req, res) => {
   User.findOne({ email: req.body.email }).then(data => {
     if (data && bcrypt.compareSync(req.body.password, data.password)) {
       console.log("User connected:", data.email)
-      res.json({ result: true, token: data });
+      res.json({ result: true, user: data });
     } else {
       res.json({ result: false, error: 'User not found or wrong password' });
     }
