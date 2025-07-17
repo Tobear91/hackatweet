@@ -48,10 +48,6 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-router.put("/", (req, res) => {
-
-})
-
 //Compteur de like par Id du tweet
 router.put("/like/:id", (req, res) => {
     Tweet.findById(req.params.id).then((tweet) => {
