@@ -51,3 +51,11 @@
     }
   }
 }
+
+.modal {
+  &.signup {
+    background-color: $blue-dark !important;
+    .ant-modal-content {
+    }
+  }
+}
