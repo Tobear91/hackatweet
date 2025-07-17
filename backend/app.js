@@ -11,10 +11,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tweetsRouter = require('./routes/tweets');
 
-const cors = require('cors');
-app.use(cors());
 
 var app = express();
+
+const cors = require('cors');
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
