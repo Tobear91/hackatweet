@@ -16,15 +16,15 @@ router.get('/', (req, res) => {
 // Creer un tweet
 router.post ('/', (req, res) => {
     //Verifier la limite des 280 caractères
+    const message = message.req.body;
     if (message.length > 280) {
         return res.json({result: false, error: 'Tweet limité à 280 caractères !'})
     }
     
-    const message = message.req.body;
     const newTweet = new Tweet ({
-        user: userId,
+        user: req.body.userId,
         date: new Date(),
-        message: message,
+        message: req.body.message,
         like: 0
     })
 
