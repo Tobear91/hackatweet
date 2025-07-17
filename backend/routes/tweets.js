@@ -35,7 +35,7 @@ router.post("/", (req, res) => {
     res.json({ result: true, tweet: data });
   });
 });
-
+// Supression tweet
 router.delete("/:id", (req, res) => {
   Tweet.deleteOne({ _id: req.params.id }).then((result) => {
     if (result.deletedCount === 0) {
