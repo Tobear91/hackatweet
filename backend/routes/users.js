@@ -6,12 +6,6 @@ const { checkBody } = require('../modules/checkBody');
 const uid2 = require('uid2');
 const bcrypt = require('bcrypt');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-
 // Route POST pour inscription
 router.post('/signup', (req, res) => {
   if (!checkBody(req.body, ['name', 'email', 'pseudo', 'password'])) {
@@ -35,7 +29,7 @@ router.post('/signup', (req, res) => {
 
       newUser.save().then(newDoc => {
         console.log("New user:", newDoc.email)
-        res.json({ result: true, token: newDoc.token });
+        res.json({ result: true, token: newDoc});
       });
     } else {
       // User already exists in database
@@ -56,7 +50,7 @@ router.post('/signin', (req, res) => {
   User.findOne({ email: req.body.email }).then(data => {
     if (data && bcrypt.compareSync(req.body.password, data.password)) {
       console.log("User connected:", data.email)
-      res.json({ result: true, token: data.token });
+      res.json({ result: true, token: data });
     } else {
       res.json({ result: false, error: 'User not found or wrong password' });
     }
