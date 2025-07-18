@@ -4,13 +4,14 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import users from "../reducers/users";
-import trends from "../reducers/trends";
+import tweets from "../reducers/tweets"
 
 import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 
-const reducers = combineReducers({ users, trends });
+
+const reducers = combineReducers({ users, tweets});
 const persistConfig = { key: "hackatweet", storage };
 
 const store = configureStore({
