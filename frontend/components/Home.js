@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 function Home() {
   const user = useSelector((store) => store.users.user);
-  console.log(user);
   const [newTweet, setNewTweet] = useState("");
   const [tweets, setTweets] = useState([]);
 
@@ -24,10 +23,8 @@ function Home() {
       }),
     })
       .then((response) => response.json())
-      .then((tweet) => {
-        console.log(tweet);
-
-        setTweets([tweet, ...tweets]);
+      .then((datas) => {
+        setTweets([datas.tweet, ...tweets]);
         setNewTweet("");
       });
   };
