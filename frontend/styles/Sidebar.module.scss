@@ -1,0 +1,42 @@
+@import "./core/variables.scss";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  color: #ffffff;
+  padding: 20px;
+
+  svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  & > div {
+    & > div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-family: "Rubik", Geneva, sans-serif;
+      font-weight: 400;
+
+      img {
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 1.6rem;
+        margin-left: 20px;
+
+        span {
+          display: block;
+          font-size: 1.4rem;
+          font-weight: 300;
+          color: #697889;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
