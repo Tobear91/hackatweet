@@ -17,13 +17,23 @@
     border-radius: 5px;
     padding: 20px;
 
-    p {
+    div {
       margin-bottom: 20px;
+
+      a {
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
 
       span {
         display: block;
         color: $blue-grey;
-        margin-top: 5px;
+        margin-top: 10px;
         font-size: 1.2rem;
         font-weight: 400;
       }

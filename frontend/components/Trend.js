@@ -1,14 +1,39 @@
 import styles from "../styles/Trend.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-// import { addTrend } from "../reducers/trends";
+import Link from "next/Link";
+import { useEffect, useState } from "react";
+import { addTrend } from "../reducers/trends";
 
-function Trend() {
+function Trend({ hashtag }) {
   const dispatch = useDispatch();
+  const [tweets, setTweets] = useState([]);
   const trends = useSelector((store) => store.trends.trends);
-  console.log(trends);
 
-  // const hashtags = tweet.message.match(/#\w+/g);
-  // hashtags && hashtags.forEach((hashtag) => dispatch(addTrend(hashtag)));
+  useEffect(() => {
+    (async () => {
+      const tweets = await getTweets();
+
+      // Initialisation des trends si il y a une différence
+      if (tweets.length > 0 && trends.length === 0) initTrends(tweets);
+
+      setTweets(tweets);
+    })();
+  }, [hashtag]);
+
+  const initTrends = async (tweetsArray) => {
+    tweetsArray.forEach((tweet) => {
+      const hashtags = tweet.message.match(/#\w+/g);
+      hashtags && hashtags.forEach((hashtag) => dispatch(addTrend(hashtag)));
+    });
+  };
+
+  const getTweets = async () => {
+    const url = "http://localhost:3000/tweets";
+    const response = await fetch(url);
+    const datas = await response.json();
+    if (hashtag) return datas.tweets.filter((tweet) => tweet.message.includes(`#${hashtag}`));
+    return datas.tweets;
+  };
 
   return (
     <>
@@ -17,14 +42,19 @@ function Trend() {
 
         <div>
           {trends.map(({ name, count }, i) => (
-            <p key={i}>
-              {name}
+            <div key={i}>
+              <Link href={`/trends/${name.slice(1)}`}>{name}</Link>
               <span>
                 {count} Tweet{count > 1 && "s"}
               </span>
-            </p>
+            </div>
           ))}
         </div>
+      </section>
+      <section>
+        {tweets.map((tweet, i) => (
+          <p key={i}>{tweet.message}</p>
+        ))}
       </section>
     </>
   );

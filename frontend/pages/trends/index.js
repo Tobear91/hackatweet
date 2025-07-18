@@ -1,4 +1,4 @@
-import Trend from "../components/Trend";
+import Trend from "../../components/Trend";
 
 function trendsPage() {
   return <Trend />;
