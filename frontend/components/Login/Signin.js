@@ -34,7 +34,7 @@ function Signin() {
     if (datas.result) {
       dispatch(login(datas.user));
       setError(null);
-      router.push("/home");
+      router.push("/pierre");
     } else {
       setError(datas.error);
     }
