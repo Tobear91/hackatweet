@@ -38,8 +38,8 @@ router.post("/", (req, res) => {
 
 // Supression tweet
 router.delete("/:id", (req, res) => {
-    console.log(req.params);
-    
+  console.log(req.params);
+
   Tweet.deleteOne({ _id: req.params.id }).then((result) => {
     if (result.deletedCount === 0) {
       return res.json({ result: false, error: "Tweet non trouvé" });
@@ -50,14 +50,14 @@ router.delete("/:id", (req, res) => {
 
 //Compteur de like par Id du tweet
 router.put("/like/:id", (req, res) => {
-    Tweet.findById(req.params.id).then((tweet) => {
-        // incrémenter de 1
-        tweet.like = tweet.like + 1
+  Tweet.findById(req.params.id).then((tweet) => {
+    // incrémenter de 1
+    tweet.like = tweet.like + 1;
 
-        tweet.save().then(() => {
-            res.json({result: true})
-        })
-    })
-})
+    tweet.save().then(() => {
+      res.json({ result: true });
+    });
+  });
+});
 
 module.exports = router;
