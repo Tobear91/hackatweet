@@ -3,8 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrow } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "antd";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../reducers/users";
 
 function Login() {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formSignup, setFormSignup] = useState({
     email: "",
@@ -28,7 +31,10 @@ function Login() {
 
     const response = await fetch(url, options);
     const datas = await response.json();
-    console.log(datas);
+
+    if (datas.result) {
+      dispatch(login(datas.user));
+    }
   };
 
   const showModal = () => {
