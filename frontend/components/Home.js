@@ -10,7 +10,6 @@ function Home() {
   const dispatch = useDispatch();
   const tweets = useSelector((state) => state.tweets.value);
   const user = useSelector((store) => store.users.user);
-  console.log(user);
 
   const [newTweet, setNewTweet] = useState("");
 
@@ -34,9 +33,9 @@ function Home() {
         dispatch(addTweet);
         setNewTweet("");
         console.log(datas.tweet);
-        
       });
   };
+  
   const handleLike = (id) => {
     fetch(`http://localhost:3000/tweets/${tweets._id}`, {
       method: "PUT",
@@ -47,8 +46,7 @@ function Home() {
       .then((datas) => {
         setNewTweet("");
         console.log(datas.tweet);
-        
-      })
+      });
   };
 
   const deleteTweet = (id) => {
@@ -59,11 +57,7 @@ function Home() {
     <div className={styles.TweetContainer}>
       {/* Zone de texte */}
       <div classeName={styles.textContainer}>
-        <textarea
-          value={newTweet}
-          onChange={(e) => setNewTweet(e.target.value)}
-          placeholder="What's up?"
-        />
+        <textarea value={newTweet} onChange={(e) => setNewTweet(e.target.value)} placeholder="What's up?" />
       </div>
       {/* Bouton Tweet */}
       <div className={styles.btnContainer}>
@@ -72,22 +66,18 @@ function Home() {
           Tweet
         </button>
       </div>
-      {tweets && tweets.length > 0 && tweets.map((tweet, i) => (
+      {tweets &&
+        tweets.length > 0 &&
+        tweets.map((tweet, i) => (
           <div key={i} className={styles.tweet}>
             <div>
               <span>{user.name}</span> {user.pseudo} {tweet.time}
             </div>
             <div>{tweets}</div>
             <div>
-              <FontAwesomeIcon
-                icon={faHeart}
-                onClick={() => handleLike(tweet.id)}
-              />
+              <FontAwesomeIcon icon={faHeart} onClick={() => handleLike(tweet.id)} />
               {tweet.likes}
-              <FontAwesomeIcon
-                icon={faTrash}
-                onClick={() => deleteTweet(tweet.id)}
-              />
+              <FontAwesomeIcon icon={faTrash} onClick={() => deleteTweet(tweet.id)} />
             </div>
           </div>
         ))}
