@@ -51,11 +51,11 @@ function Trend({ hashtag }) {
           ))}
         </div>
       </section>
-      <section>
+      {/* <section>
         {tweets.map((tweet, i) => (
           <p key={i}>{tweet.message}</p>
         ))}
-      </section>
+      </section> */}
     </>
   );
 }

@@ -36,7 +36,7 @@ function Signup() {
     if (datas.result) {
       dispatch(login(datas.user));
       setError(null);
-      router.push("/home");
+      router.push("/");
     } else {
       setError(datas.error);
     }
