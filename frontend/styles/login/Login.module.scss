@@ -1,4 +1,4 @@
-@import "./core/variables.scss";
+@import "../core/variables.scss";
 
 .login_page {
   height: 100%;
@@ -48,14 +48,6 @@
         font-size: 4rem;
         font-weight: 500;
       }
-    }
-  }
-}
-
-.modal {
-  &.signup {
-    background-color: $blue-dark !important;
-    .ant-modal-content {
     }
   }
 }
